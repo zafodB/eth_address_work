@@ -4,6 +4,7 @@ import org.bouncycastle.crypto.params.ECDomainParameters;
 import org.bouncycastle.crypto.params.ECPrivateKeyParameters;
 import org.bouncycastle.crypto.params.ECPublicKeyParameters;
 import org.bouncycastle.jcajce.provider.symmetric.ARC4;
+import org.bouncycastle.math.ec.ECPoint;
 
 import java.math.BigInteger;
 import java.security.*;
@@ -22,17 +23,19 @@ public class main {
 
         Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
 
+
         Scanner sc = new Scanner(System.in);
 
-        while(true) {
-            String input = sc.nextLine();
-
-
+        while (true) {
             X9ECParameters curve = SECNamedCurves.getByName("secp256k1");
             ECDomainParameters domain = new ECDomainParameters(curve.getCurve(), curve.getG(), curve.getN(), curve.getH());
-            System.out.println(GetPublicKey(input, domain));
-        }
 
+            BigInteger d = new BigInteger(sc.nextLine().toString().getBytes());
+            ECPoint q = domain.getG().multiply(d);
+
+            ECPublicKeyParameters publicParams = new ECPublicKeyParameters(q, domain);
+            System.out.println(byteArrayToHex(publicParams.getQ().getEncoded()));
+        }
 //        try {
 //            KeyPairGenerator keyGen = KeyPairGenerator.getInstance("ECDSA", "BC");
 //            SecureRandom random = SecureRandom.getInstance("SHA1PRNG");
@@ -79,8 +82,13 @@ public class main {
             sb.append(String.format("%02x", b));
         return sb.toString();
     }
+
+
 }
 
+3a4ab22da00990300828b0f988ecc450ad9693147b341db235f007da56d2446d7e3cde216481b4532e3ab3c219d91945262d6136880f0707e66b1dd71e436f57
 
-        2800740f25ba09cd759fa280389f0267d5c25dc0
+        3b4606f53ea8bc10272a9a5de17380465c95674b9a881b0b1980222e7f4b1d3f
+
+        0x77443347472554D910471f6f817803FEC62B1cF7
 
