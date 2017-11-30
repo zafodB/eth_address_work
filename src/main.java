@@ -12,7 +12,6 @@
 //import org.bouncycastle.util.encoders.Base64;
 
 
-import org.bouncycastle.jcajce.provider.asymmetric.ec.BCECPrivateKey;
 import org.spongycastle.crypto.params.ECDomainParameters;
 import org.spongycastle.jcajce.provider.digest.Keccak;
 import org.spongycastle.jce.ECNamedCurveTable;
@@ -21,9 +20,7 @@ import org.spongycastle.jce.interfaces.ECPublicKey;
 import org.spongycastle.jce.spec.ECParameterSpec;
 import org.spongycastle.jce.spec.ECPublicKeySpec;
 import org.spongycastle.math.ec.ECPoint;
-import org.spongycastle.util.encoders.Base64;
 import org.spongycastle.util.encoders.Hex;
-
 
 import java.math.BigInteger;
 import java.security.KeyFactory;
@@ -31,7 +28,6 @@ import java.security.KeyPairGenerator;
 import java.security.SecureRandom;
 import java.security.Security;
 import java.security.spec.ECGenParameterSpec;
-import java.security.spec.PKCS8EncodedKeySpec;
 import java.util.Scanner;
 
 
